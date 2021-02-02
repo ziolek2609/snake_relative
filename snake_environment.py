@@ -4,7 +4,7 @@ import pygame
 
 class SnakeEnvironment():
     # rozpoczęcie z ustawieniami startowymi
-    def __init__(self, waitTime = 100, segments = 10, grid = 1, segmentSize = 30, livingPenalty = -0.02, posReward = 1, negReward = -2, vision = 1):
+    def __init__(self, waitTime = 100, segments = 10, grid = 1, segmentSize = 30, livingPenalty = -0.02, posReward = 1, negReward = -2, vision = 1, cordinate = 1):
         # stałe parametry środowiska
         self.SEGMENTS = segments #ilość segmentów na jednym boku ekranu gry
         self.GRID = grid # wielkość granicy między segmentami
@@ -16,7 +16,7 @@ class SnakeEnvironment():
         self.WAITTIME = waitTime # czas pomiędzy akcjami
         self.SCREEN = pygame.display.set_mode((self.SCREENSIZE,self.SCREENSIZE)) # ekran gry
         self.VISION = vision  # 1 -- wizja odległości, 2 -- wizja obecności
-        #self.CORDINATE = cordinate # 1 -- koordynaty bezwzględne, 2 -- koordynaty względne
+        self.CORDINATE = cordinate # 1 -- koordynaty bezwzględne, 2 -- koordynaty względne
 
         self.reset()
 
@@ -89,7 +89,7 @@ class SnakeEnvironment():
         # jeśli wąż uderzy w ściane (wallCrush==True) -- odległość od ściany na danym kierunku to 0
 
         # BEZWZGLĘDNE
-        '''if self.CORDINATE == 1:
+        if self.CORDINATE == 1:'''
             newState = zeros((1,24))
 
             # NORTH
@@ -213,7 +213,7 @@ class SnakeEnvironment():
                     else:
                         newState[0][22] = 1
             newState[0][23] = min(self.snakeLoc[0][0]+1, self.snakeLoc[0][1]+1)
-
+        '''
         # WZGLĘDNE
         elif self.CORDINATE == 2:
             newState = zeros((1,21))
